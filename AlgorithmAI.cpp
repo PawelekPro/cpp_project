@@ -10,9 +10,13 @@ AlgorithmAI::AlgorithmAI(unsigned short depth, boardMarks AImark, boardMarks pla
 
 short AlgorithmAI::maxMove(Board &board, unsigned short depth, short alpha, short beta) const
 {
+    /* If game is over, return a score usinh method implemented in Board class. */
     boardState state = board.evaluateBoardState();
     if ( (depth == 0) || (state != boardState::noWinner))
             return score(state);
+
+    /* Choose the best score based on all empty cell choices.
+       @param SHRT_MIN is a minimum value for an object of type short int. */
     short bestScore = SHRT_MIN;
     for (size_t row = 0; row < board.getSize(); ++row) {
         for (size_t col = 0; col < board.getSize(); ++col) {
@@ -44,11 +48,13 @@ short AlgorithmAI::maxMove(Board &board, unsigned short depth, short alpha, shor
 
 short AlgorithmAI::minMove(Board &board, unsigned short depth, short alpha, short beta) const
 {
+    /* If game is over, return a score usinh method implemented in Board class. */
     boardState state = board.evaluateBoardState();
     if ( (depth == 0) || (state != boardState::noWinner))
             return score(state);
 
     short bestScore = SHRT_MAX;
+    /* @param SHRT_MAX is a maximum value for an object of type short int. */
     for (size_t row = 0; row < board.getSize(); ++row) {
         for (size_t col = 0; col < board.getSize(); ++col) {
             if (boardMarks::Empty == board.at(row, col)) {
@@ -97,7 +103,7 @@ short AlgorithmAI::score(const boardState state) const
 
 int AlgorithmAI::play(Board &board)
 {
-    /* Chech if the board is not at a final state */
+    /* Check if the board is not at a final state */
     if (boardState::noWinner != board.evaluateBoardState())
         return defaultOptions::INVALID_CELL;
 

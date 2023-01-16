@@ -11,16 +11,12 @@ Board::Board(size_t size)
 
 Board::Board(Board &b)
     : board(b.board), boardSize(b.boardSize)
-{
-
-}
+{}
 
 Board::Board(Board &&b)
     : board(std::move(b.board)),
       boardSize(std::move(b.boardSize))
-{
-
-}
+{}
 
 Board &Board::operator=(Board b)
 {
@@ -30,19 +26,11 @@ Board &Board::operator=(Board b)
 }
 
 Board::~Board()
-{
+{}
 
-}
+size_t Board::getSize() const { return boardSize; }
 
-size_t Board::getSize() const
-{
-    return boardSize;
-}
-
-boardMarks Board::at(size_t row, size_t col) const
-{
-    return board.at(row).at(col);
-}
+boardMarks Board::at(size_t row, size_t col) const { return board.at(row).at(col); }
 
 boardState Board::evaluateBoardState() const
 {
@@ -171,19 +159,7 @@ void Board::reset()
     }
 }
 
-#ifdef QT_DEBUG
-void Board::printBoard() const
-{
-    QString board_;
-    for (size_t row = 0; row < boardSize; ++row) {
-        for (size_t col = 0; col < boardSize; ++col) {
-            board_ += QString::number(static_cast<int>(board[row][col]));
-        }
-        board_ += '\n';
-    }
-    qDebug().noquote() << board_;
-}
-#endif
+
 
 
 

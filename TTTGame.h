@@ -7,11 +7,11 @@
 #include <vector>
 
 
-class TTTGame final : public QDialog
+class TTTGame : public QDialog
 {
     Q_OBJECT
 public:
-    explicit TTTGame(QWidget *parent = nullptr);
+    TTTGame(QWidget *parent = nullptr);
 
     std::vector<Cell> buildCellButtons(size_t boardSize);
     void updateCell(Cell &cell, boardMarks currentPlayer);

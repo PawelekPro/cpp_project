@@ -14,6 +14,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
 
 set(TS_FILES projekt_zaliczeniowy_pl_PL.ts)
 
+
 set(PROJECT_SOURCES
         main.cpp
         HomePage.ui

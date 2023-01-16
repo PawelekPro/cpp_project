@@ -15,7 +15,7 @@ namespace defaultOptions
     constexpr char DEFAULT_COLOR[] = "FFF";
 }
 
-/* The Cell structure represent o board cell and all the necessary info about the cell */
+/* The Cell structure represent o board cell and all the necessary info about the cell. */
 struct Cell
 {
     QPushButton *cellButton = nullptr;
