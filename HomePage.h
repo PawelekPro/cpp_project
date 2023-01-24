@@ -24,6 +24,8 @@ private:
        Source: GameOptions.h */
     Options options;
 
+    void closeEvent(QCloseEvent *event) override;
+
 public slots:
     void singlePlayer(bool checked);
 
@@ -32,6 +34,10 @@ public slots:
     void updateAlgDepth(int depth);
 
     void startGame();
+
+signals:
+    /* exited is emitted to manually handle the close functionality. */
+    void exited();
 };
 
 #endif 

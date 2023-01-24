@@ -48,18 +48,18 @@ void GameController::setConnections()
     connect(this, &GameController::turnFinished, [=] { AIMenagerPlay(); });
 }
 
-void GameController::updateGameState(Cell &cell)
-{
-    /* GUI: updates the cell's view. */
-    this->view.updateCell(cell, currentPlayer);
+//void GameController::updateGameState(Cell &cell)
+//{
+//    /* GUI: updates the cell's view. */
+//    this->view.updateCell(cell, currentPlayer);
 
-    /* Updating board state. */
-    boardState currentState = board.evaluateBoardState();
-    if (boardState::noWinner != currentState)
-        view.declareGameState(currentState);
+//    /* Updating board state. */
+//    boardState currentState = board.evaluateBoardState();
+//    if (boardState::noWinner != currentState)
+//        view.declareGameState(currentState);
 
-    switchPlayer();
-}
+//    switchPlayer();
+//}
 
 void GameController::reset()
 {
@@ -84,7 +84,7 @@ void GameController::AIMenagerPlay()
 {
     int cellIdx = AIMenager->play(board);
     if (defaultOptions::INVALID_CELL != cellIdx)
-        updateGameState(cells.at(static_cast<size_t>(cellIdx)));
+        updateGameState<Cell>(cells.at(static_cast<size_t>(cellIdx)));
 }
 
 void GameController::switchPlayer()
@@ -95,13 +95,14 @@ void GameController::switchPlayer()
         currentPlayer =boardMarks::X;
 }
 
+
 void GameController::updateGame(Cell &cell)
 {
     bool success = board.setPlayerInput(static_cast<size_t>(cell.row),
                                         static_cast<size_t>(cell.col),
                                         currentPlayer);
     if (success) {
-        updateGameState(cell);
+        updateGameState<Cell>(cell);
         emit turnFinished();
     }
 }

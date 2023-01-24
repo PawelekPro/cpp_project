@@ -35,7 +35,20 @@ protected:
 
     /* updateGameState updates the view and the model and switches the players.
        @param cell represents the cell clicked by current player. */
-    void updateGameState(Cell &cell);
+//    void updateGameState(Cell &cell);
+    template <typename T>
+    void updateGameState(T &cell)
+    {
+        /* GUI: updates the cell's view. */
+        this->view.updateCell(cell, currentPlayer);
+
+        /* Updating board state. */
+        boardState currentState = board.evaluateBoardState();
+        if (boardState::noWinner != currentState)
+            view.declareGameState(currentState);
+
+        switchPlayer();
+    }
 
    /* Method that calls AIMenager to play. */
     void AIMenagerPlay();
@@ -64,7 +77,6 @@ signals:
 public slots:
     /* updateGame sets the cell clicked in the UI. */
     virtual void updateGame(Cell &cell);
-
 };
 
 

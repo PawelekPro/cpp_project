@@ -49,3 +49,9 @@ void HomePage::startGame()
     this->show();
 
 }
+
+void HomePage::closeEvent(QCloseEvent *event)
+{
+    QMainWindow::closeEvent(event);
+    emit exited();
+}
